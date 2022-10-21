@@ -10,6 +10,7 @@ const getAllProductTypes = async (params) => {
       list: allProductTypes,
       count,
       url: '/products/types',
+      args: utils.getParamsList(params),
       ...filters
     })
   } catch (error) {

@@ -3,9 +3,9 @@
 const db = require('../database/database').db
 const error = require('./error')
 
-exports.findAll = (sql) => {
+exports.findAll = (sql, queries) => {
   return new Promise((resolve, reject) => {
-    db.all(sql, (err, rows) => {
+    db.all(sql, queries, (err, rows) => {
       if (err) {
         reject(error(500, 'Internal server error'))
       } else if (rows === null || rows.length === 0) {
@@ -16,4 +16,5 @@ exports.findAll = (sql) => {
     })
   })
 }
+
 

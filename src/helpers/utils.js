@@ -14,8 +14,8 @@ const outputToApi =  (code, data) => {
   }
 }
 
-const apiEncodeList = ({list, count, limit, offset, url}) => {
-  const href = config.BASE_URL + "/" + config.VERSION + url
+const apiEncodeList = ({list, count, limit, offset, url, args}) => {
+  const href = config.BASE_URL + url
   data = {
     href,
     count,
@@ -23,10 +23,20 @@ const apiEncodeList = ({list, count, limit, offset, url}) => {
     offset,
     data: list
   }
-  if (offset > 0) data['previous'] = `${href}?limit=${limit}&offset=${offset - limit}`
-  if (offset < limit && offset > 0) data['previous'] = `${href}?limit=${limit}&offset=0`
-  if ((limit + offset) < count) data['next'] = `${href}?limit=${limit}&offset=${limit + offset}`
+  if (offset > 0) data['previous'] = `${href}?limit=${limit}&offset=${offset - limit}${args}`
+  if (offset < limit && offset > 0) data['previous'] = `${href}?limit=${limit}&offset=0${args}`
+  if ((limit + offset) < count) data['next'] = `${href}?limit=${limit}&offset=${limit + offset}${args}`
   return data
+}
+
+const getParamsList = (params) => {
+  let list = ''
+  Object.entries(params).forEach(([name, value]) => {
+    if (name != 'limit' && name != 'offset') {
+      list += `&${name}=${value}`
+    }
+  })
+  return list
 }
 
 const parseFilters = (params) => {
@@ -41,6 +51,7 @@ const parseFilters = (params) => {
 module.exports = {
   outputToApi,
   apiEncodeList,
+  getParamsList,
   parseFilters
 }
 
