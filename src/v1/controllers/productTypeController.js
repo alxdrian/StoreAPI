@@ -11,6 +11,17 @@ const getAllProductTypes = async (req, res, next) => {
   }
 }
 
+const getProductTypeById = async (req, res, next) => {
+  try {
+    const productType = await productTypeService.getProductTypeById(req.params.id)
+    res.status(200)
+    res.send(utils.outputToApi(200, {data: productType}))
+  } catch (error) {
+    next(error)
+  }
+}
+
 module.exports = {
-  getAllProductTypes
+  getAllProductTypes,
+  getProductTypeById
 }

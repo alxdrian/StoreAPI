@@ -13,13 +13,13 @@ let db = new sqlite3.Database('./product.db', sqlite3.OPEN_READWRITE, (err) => {
 
 let init = () => {
   const sql = `
-    CREATE TABLE product_types (
-      product_type_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    CREATE TABLE productTypes (
+      id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
       name TEXT NOT NULL UNIQUE,
       description TEXT NOT NULL,
-      image_url TEXT
+      imageUrl TEXT
     )`
-  const insert = 'INSERT INTO product_types (name, description, image_url) VALUES (?,?,?)'
+  const insert = 'INSERT INTO productTypes (name, description, imageUrl) VALUES (?,?,?)'
 
   db.serialize(() => {
     db.run(sql, (err) => {if (err) console.log('Table already exists.')})

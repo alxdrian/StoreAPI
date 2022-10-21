@@ -3,13 +3,13 @@
 const db = require('../database/database').db
 const error = require('./error')
 
-exports.findAll = (sql, queries) => {
+const findAll = (sql, queries) => {
   return new Promise((resolve, reject) => {
     db.all(sql, queries, (err, rows) => {
       if (err) {
         reject(error(500, 'Internal server error'))
       } else if (rows === null || rows.length === 0) {
-        reject(error(400, 'Entities not found'))
+        resolve([])
       } else {
         resolve(rows)
       }
@@ -17,4 +17,21 @@ exports.findAll = (sql, queries) => {
   })
 }
 
+const findOne = (sql, queries) => {
+  return new Promise((resolve, reject) => {
+    db.all(sql, queries, (err, rows) => {
+      if (err) {
+        reject(error(500, 'Internal server error'))
+      } else if (rows === null || rows.length === 0) {
+        reject(error(404, 'Entities not found'))
+      } else {
+        resolve(rows)
+      }
+    })
+  })
+}
 
+module.exports = {
+  findAll,
+  findOne
+}

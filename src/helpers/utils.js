@@ -15,7 +15,7 @@ const outputToApi =  (code, data) => {
 }
 
 const apiEncodeList = ({list, count, limit, offset, url, args}) => {
-  const href = config.BASE_URL + url
+  const href = config.BASE_URL + '/' + config.VERSION + url
   data = {
     href,
     count,

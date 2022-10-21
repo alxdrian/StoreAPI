@@ -1,8 +1,10 @@
 const query = require('../helpers/query')
 
+// GET ALL PRODUCT TYPES
+
 const getAllProductTypes = async (params) => {
   try {
-    let sql = "SELECT * FROM product_types WHERE 1=1"
+    let sql = "SELECT * FROM productTypes WHERE 1=1"
     let queries = []
 
     if (params.name) {
@@ -23,7 +25,7 @@ const getAllProductTypes = async (params) => {
 
 const countAllProductTypes = async (params) => {
   try {
-    let sql = "SELECT COUNT(*) AS count FROM product_types WHERE 1=1"
+    let sql = "SELECT COUNT(*) AS count FROM productTypes WHERE 1=1"
     let queries = []
 
     if (params.name) {
@@ -39,7 +41,21 @@ const countAllProductTypes = async (params) => {
   }
 }
 
+// GET PRODUCT TYPE BY ID
+
+const getProductTypeById = async (id) => {
+  try {
+    let sql = "SELECT * FROM productTypes WHERE 1=1 AND id = ?"
+    const productTypes = await query.findOne(sql, [id]);
+    return productTypes
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
+
 module.exports = {
   getAllProductTypes,
-  countAllProductTypes
+  countAllProductTypes,
+  getProductTypeById
 }

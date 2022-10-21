@@ -18,6 +18,16 @@ const getAllProductTypes = async (params) => {
   }
 }
 
+const getProductTypeById = async (id) => {
+  try {
+    const productType = await ProductType.getProductTypeById(id)
+    return productType[0]
+  } catch (error) {
+    throw error
+  }
+}
+
 module.exports = {
-  getAllProductTypes
+  getAllProductTypes,
+  getProductTypeById
 }
