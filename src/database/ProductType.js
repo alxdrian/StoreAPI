@@ -93,10 +93,22 @@ const updateProductType = async (id, params) => {
   }
 }
 
+const deleteProductType = async (id) => {
+  try {
+    let sql = "DELETE FROM productTypes WHERE 1=1 AND id = ?"
+    const productType = await query.run(sql, [id]);
+    return productType
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
+
 module.exports = {
   getAllProductTypes,
   countAllProductTypes,
   getProductTypeById,
   createProductType,
-  updateProductType
+  updateProductType,
+  deleteProductType
 }

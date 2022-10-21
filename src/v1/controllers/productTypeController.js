@@ -41,11 +41,22 @@ const updateProductType = async (req, res, next) => {
   }
 }
 
+const deleteProductType = async (req, res, next) => {
+  try {
+    const productType = await productTypeService.deleteProductType(req.params.id)
+    res.status(200)
+    res.send(utils.outputToApi(200, {data: productType}))
+  } catch (error) {
+    next(error)
+  }
+}
+
  
 
 module.exports = {
   getAllProductTypes,
   getProductTypeById,
   createProductType,
-  updateProductType
+  updateProductType,
+  deleteProductType
 }

@@ -45,9 +45,19 @@ const updateProductType = async (id, params) => {
   }
 }
 
+const deleteProductType = async (id) => {
+  try {
+    const productType = await ProductType.deleteProductType(id)
+    return productType
+  } catch (error) {
+    throw error
+  }
+}
+
 module.exports = {
   getAllProductTypes,
   getProductTypeById,
   createProductType,
-  updateProductType
+  updateProductType,
+  deleteProductType
 }
