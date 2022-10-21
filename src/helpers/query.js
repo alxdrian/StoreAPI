@@ -35,7 +35,7 @@ const run = (sql, queries) => {
   return new Promise((resolve, reject) => {
     db.run(sql, queries, (err) => {
       if (err) {
-        reject(error(400, 'Entity was not created'))
+        reject(error(400, 'Entity was not processed'))
       } else {
         resolve({result: 'ok'})
       }

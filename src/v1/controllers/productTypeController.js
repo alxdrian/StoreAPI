@@ -31,10 +31,21 @@ const createProductType = async (req, res, next) => {
   }
 }
 
+const updateProductType = async (req, res, next) => {
+  try {
+    const productType = await productTypeService.updateProductType(req.params.id, req.body)
+    res.status(200)
+    res.send(utils.outputToApi(200, {data: productType}))
+  } catch (error) {
+    next(error)
+  }
+}
+
  
 
 module.exports = {
   getAllProductTypes,
   getProductTypeById,
-  createProductType
+  createProductType,
+  updateProductType
 }

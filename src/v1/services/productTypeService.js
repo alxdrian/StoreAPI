@@ -36,8 +36,18 @@ const createProductType = async (params) => {
   }
 }
 
+const updateProductType = async (id, params) => {
+  try {
+    const productType = await ProductType.updateProductType(id, params)
+    return productType
+  } catch (error) {
+    throw error
+  }
+}
+
 module.exports = {
   getAllProductTypes,
   getProductTypeById,
-  createProductType
+  createProductType,
+  updateProductType
 }

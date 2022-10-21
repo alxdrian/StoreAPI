@@ -69,9 +69,34 @@ const createProductType = async (params) => {
   }
 }
 
+// UPDATE PRODUCT TYPE
+
+const updateProductType = async (id, params) => {
+  try {
+    let sql = "UPDATE productTypes SET"
+    let queries = []
+
+    let sqlParams = []
+    Object.entries(params).forEach(([name, value]) => {
+      sqlParams.push(` ${name} = ?`)
+      queries.push(value)
+    })
+
+    sql += sqlParams.join(',') + " WHERE id = ?"
+    queries.push(id)
+
+    const productType = await query.run(sql, queries);
+    return productType
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
+
 module.exports = {
   getAllProductTypes,
   countAllProductTypes,
   getProductTypeById,
-  createProductType
+  createProductType,
+  updateProductType
 }
