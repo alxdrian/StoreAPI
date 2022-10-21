@@ -17,4 +17,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors());
 
+// Routes
+app.use('/api/v1', require('./v1/routes/router'))
+
 module.exports = app
