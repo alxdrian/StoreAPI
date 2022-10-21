@@ -5,6 +5,10 @@ require('dotenv').config();
 
 const app = express()
 
+// Database
+const database = require('./database/database')
+database.init()
+
 // Settings
 app.set("port", process.env.PORT || 5000)
 
