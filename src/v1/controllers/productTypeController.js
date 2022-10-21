@@ -1,8 +1,10 @@
-const getAllProductTypes = (req, res, next) => {
+const productTypeService = require('../services/productTypeService')
+
+const getAllProductTypes = async (req, res, next) => {
   try {
-    console.log('jol')
+    const allProductTypes = await productTypeService.getAllProductTypes()
     res.status(200)
-    res.send({product: 'products'})
+    res.send({data: allProductTypes})
   } catch (error) {
     next(error)
   }
