@@ -46,8 +46,23 @@ const countAllProductTypes = async (params) => {
 const getProductTypeById = async (id) => {
   try {
     let sql = "SELECT * FROM productTypes WHERE 1=1 AND id = ?"
-    const productTypes = await query.findOne(sql, [id]);
-    return productTypes
+    const productType = await query.findOne(sql, [id]);
+    return productType
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
+
+// CREATE PRODUCT TYPE
+
+const createProductType = async (params) => {
+  try {
+    let sql = "INSERT INTO productTypes (name, description, imageUrl) VALUES (?,?,?)"
+    let queries = [params.name, params.description, params.imageUrl]
+
+    const productType = await query.run(sql, queries);
+    return productType
   } catch (error) {
     console.log(error)
     throw error
@@ -57,5 +72,6 @@ const getProductTypeById = async (id) => {
 module.exports = {
   getAllProductTypes,
   countAllProductTypes,
-  getProductTypeById
+  getProductTypeById,
+  createProductType
 }

@@ -21,7 +21,20 @@ const getProductTypeById = async (req, res, next) => {
   }
 }
 
+const createProductType = async (req, res, next) => {
+  try {
+    const productType = await productTypeService.createProductType(req.body)
+    res.status(201)
+    res.send(utils.outputToApi(200, {data: productType}))
+  } catch (error) {
+    next(error)
+  }
+}
+
+ 
+
 module.exports = {
   getAllProductTypes,
-  getProductTypeById
+  getProductTypeById,
+  createProductType
 }

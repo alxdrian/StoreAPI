@@ -27,7 +27,17 @@ const getProductTypeById = async (id) => {
   }
 }
 
+const createProductType = async (params) => {
+  try {
+    const productType = await ProductType.createProductType(params)
+    return productType
+  } catch (error) {
+    throw error
+  }
+}
+
 module.exports = {
   getAllProductTypes,
-  getProductTypeById
+  getProductTypeById,
+  createProductType
 }
