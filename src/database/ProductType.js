@@ -1,9 +1,13 @@
 const query = require('../helpers/query')
 
-const getAllProductTypes = async () => {
+const getAllProductTypes = async (params) => {
   try {
     let sql = "SELECT * FROM product_types"
-    const productTypes = await query.findAll(sql);
+
+    sql += ` LIMIT ${params.limit}`
+    sql += ` OFFSET ${params.offset}`
+    
+    const productTypes = await query.findAll(sql)
     return productTypes
   } catch (error) {
     console.log(error)

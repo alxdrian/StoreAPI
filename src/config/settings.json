@@ -1,0 +1,8 @@
+{
+  "development": {
+    "BASE_URL": "localhost:5000/api",
+    "VERSION": "v1",
+    "LIMIT_DB": 10,
+    "OFFSET_DB": 0
+  }
+}
