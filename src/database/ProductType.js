@@ -93,6 +93,8 @@ const updateProductType = async (id, params) => {
   }
 }
 
+// DELETE PRODUCT TYPE
+
 const deleteProductType = async (id) => {
   try {
     let sql = "DELETE FROM productTypes WHERE 1=1 AND id = ?"

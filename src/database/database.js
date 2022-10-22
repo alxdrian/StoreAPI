@@ -24,12 +24,12 @@ let init = () => {
   db.serialize(() => {
     db.run(sql, (err) => {if (err) console.log('Table already exists.')})
       .run(insert, 
-          ['Sellos', 
+          ['Sello', 
           'Sellos con hermosos diseños en relieve metálico', 
           'https://cdn.shopify.com/s/files/1/2076/4473/products/Wax-Seal-Stamp-3.jpg?v=1615713462'],
           (err) => {if (err) console.log('Entity already exists.')})
       .run(insert, 
-          ['Mangos', 
+          ['Mango', 
           'Mangos especiales para sellos', 
           'https://i.etsystatic.com/31847384/r/il/f32ee4/3637622315/il_fullxfull.3637622315_mw81.jpg'],
           (err) => {if (err) console.log('Entity already exists.')})
